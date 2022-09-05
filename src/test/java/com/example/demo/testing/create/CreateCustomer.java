@@ -28,7 +28,7 @@ public class CreateCustomer {
 		c4.setName("李四");
 		
 		Customer c5 = new Customer();
-		c5.setName("'歐陽筷子");
+		c5.setName("歐陽筷子");
 		
 		customerRepository.save(c1);
 		customerRepository.save(c2);
