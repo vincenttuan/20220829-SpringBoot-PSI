@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Purchase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id; // 採購單序號
 	
 	@Column
 	@Temporal(TemporalType.DATE)
@@ -30,5 +30,9 @@ public class Purchase {
 	@JoinColumn(name = "supplier_id") // 供應商序號(外鍵)
 	@ManyToOne
 	private Supplier supplier;
+	
+	@JoinColumn(name = "employee_id") // 員工序號(外鍵)
+	@ManyToOne
+	private Employee employee;
 	
 }
