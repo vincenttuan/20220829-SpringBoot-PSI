@@ -27,9 +27,11 @@ public class Order {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date; // 訂單日期
 	
-	@JoinColumn(name = "customer_id")
+	@JoinColumn(name = "customer_id")  // 客戶編號(外鍵)
 	@ManyToOne
 	private Customer customer;
 	
-	
+	@JoinColumn(name = "employee_id")  // 員工編號(外鍵)
+	@ManyToOne
+	private Employee employee;
 }
