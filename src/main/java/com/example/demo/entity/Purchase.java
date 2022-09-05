@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,5 +27,8 @@ public class Purchase {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date; // 採購日期
 	
+	@JoinColumn(name = "supplier_id") // 供應商序號(外鍵)
+	@ManyToOne
+	private Supplier supplier;
 	
 }
