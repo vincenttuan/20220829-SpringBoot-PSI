@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders") // 因為 MySQL 不可以建立 Order 資料表 (因 Order 在 MySQL 中是保留字)
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
