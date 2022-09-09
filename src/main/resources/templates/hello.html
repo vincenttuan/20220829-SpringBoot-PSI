@@ -57,9 +57,17 @@
 	</form>
 	<hr />
 	URL 1:<p />
-	
+	<a th:href="@{https://tw.yahoo.com}" href="#" >Absolute Path</a> https://tw.yahoo.com<p/>
+	<a th:href="@{foo/demo1.html}" href="#" >Page-Relative</a> foo/demo1.html<p/>
+	<a th:href="@{/foo/demo1.html}" href="#" >Context-Relative</a> /foo/demo1.html<p/>
+	<a th:href="@{~/foo/demo1.html}" href="#" >Server-Relative</a> ~/foo/demo1.html<p/>
+	<a th:href="@{//tw.yahoo.com/index.html}" href="#" >Protocol-Relative</a> //tw.yahoo.com/index.html<p/>
 	<hr />
-	URL 2:<p />
+	URL 2 + args:<p />
+	<a th:href="@{/demo(id=${user.id}, action=${user.name})}" href="#" >link 1 </a><p/> /psi/demo?id=2&action=Mary<p />
+	<a th:href="@{/demo(id=2, action='show')}" href="#" >link 2 </a><p/> /psi/demo?id=2&action=show<p />
+	<a th:href="@{/demo/{id}(id=3, action='show')}" href="#" >link 3 </a><p/> /psi/demo/3?action=show<p />
+	<a th:href="@{/demo/{id}/{action}(id=3, action='show')}" href="#" >link 4 </a><p/> /psi/demo/3/show<p />
 	<hr />
 	
 </body>
