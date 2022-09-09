@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.Arrays;
 import java.util.Date;
-
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,16 @@ public class HelloController {
 	// 執行網址: /psi/hello/
 	@RequestMapping("/") 
 	public String index(Model model) {
+		java.util.List<User> users = Arrays.asList(
+				new User(1, "John", 15, new Date()),
+				new User(2, "Mary", 19, new Date()),
+				new User(3, "Jack", 17, new Date()),
+				new User(4, "Rose", 20, new Date()),
+				new User(5, "Amy", 22, new Date())
+		);
 		model.addAttribute("time", new Date());
 		model.addAttribute("user", new User(2, "Mary", 19, new Date()));
+		model.addAttribute("users", users);
 		return "hello";
 	}
 	
