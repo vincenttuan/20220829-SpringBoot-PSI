@@ -14,6 +14,7 @@ public class HelloController {
 	@RequestMapping("/") 
 	public String index(Model model) {
 		model.addAttribute("time", new Date());
+		model.addAttribute("user", new User(2, "Mary", 19, new Date()));
 		return "hello";
 	}
 	
