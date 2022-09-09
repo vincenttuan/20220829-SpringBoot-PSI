@@ -37,7 +37,7 @@ public class CreatePurchase {
 	@Test
 	public void test() {
 		// 資料預備
-		// Sales 部門的員工 Bob 對 富貴芬芳 採購 百合花 100 朵 與 鬱金香 200 朵
+		// Purchase 部門的員工 Bob 對 富貴芬芳 採購 百合花 100 朵 與 鬱金香 200 朵
 		Supplier s1 = supplierRepository.findById(1L).get(); // 富貴芬芳
 		Employee e4 = employeeRepository.findById(4L).get(); // Bob
 		Product p1 = productRepository.findById(1L).get(); // 百合花
