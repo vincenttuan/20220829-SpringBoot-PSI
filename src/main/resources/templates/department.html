@@ -12,6 +12,15 @@
 		<div th:include="header :: header"></div>
 		<!-- Content -->
 		<h1>新增部門</h1>
+		<form action="#" th:action="@{/department/create}" th:object="${department}" method="post">
+			<div class="form-group">
+				<label>部門名稱:</label>
+				<input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入部門名稱">
+			</div>
+			<input type="submit" value="新增部門" class="btn btn-primary" />
+		</form>
+		<p />
+		<h1>全部部門列表</h1>
 		
 		<!-- Footer -->
 		<div th:include="footer :: footer"></div>
