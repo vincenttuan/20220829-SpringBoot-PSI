@@ -39,5 +39,11 @@ public class EmployeeController {
 		return "redirect:/employee/";
 	}
 	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		employeeRepository.deleteById(id);
+		return "redirect:/employee/";
+	}
+	
 	
 }
