@@ -75,6 +75,12 @@ public class Employee {
 	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", department=" + department + ", purchases=" + purchases
+				+ ", orders=" + orders + "]";
+	}
 	
 	
 	

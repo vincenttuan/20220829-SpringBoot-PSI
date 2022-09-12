@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.Department;
 import com.example.demo.entity.Employee;
@@ -30,6 +31,12 @@ public class EmployeeController {
 		model.addAttribute("employees", employeeRepository.findAll());
 		model.addAttribute("departments", departmentRepository.findAll());
 		return "employee"; 
+	}
+	
+	@PostMapping("/")
+	public String create(Employee employee) {
+		employeeRepository.save(employee);
+		return "redirect:/employee/";
 	}
 	
 	
