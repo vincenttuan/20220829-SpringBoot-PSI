@@ -12,7 +12,7 @@
 		<div th:include="header :: header"></div>
 		<!-- Content -->
 		<h1>修改部門</h1>
-		<form action="#" th:action="@{/department/}" th:object="${department}" method="post">
+		<form action="#" th:action="@{/department/{id}(id=${department.id})}" th:object="${department}" method="post">
 			<input type="hidden" name="_method" value="PUT" />
 			<div class="form-group">
 				<label>部門名稱:</label>
