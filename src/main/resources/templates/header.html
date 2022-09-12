@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+	<a th:href="@{/index/}" class="btn btn-warning">PSI 資料表關聯圖</a>
+	<a th:href="@{/department/}" class="btn btn-warning">部門員工資料</a>
+	<a th:href="@{/customer/}" class="btn btn-warning">客戶資料</a>
+	<a th:href="@{/order/}" class="btn btn-warning">訂單資料</a>
+	<a th:href="@{/product/}" class="btn btn-warning">商品資料</a>
+	<a th:href="@{/supplier/}" class="btn btn-warning">供應商資料</a>
+	<a th:href="@{/purchase/}" class="btn btn-warning">採購單資料</a>
+	<a th:href="@{/inventory/}" class="btn btn-warning">即時庫存資料</a>
+	<a th:href="@{/report/}" class="btn btn-warning">統計圖表</a>
+</header>
