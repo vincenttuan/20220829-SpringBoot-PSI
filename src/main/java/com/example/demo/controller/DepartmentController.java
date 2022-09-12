@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Department;
@@ -36,6 +37,13 @@ public class DepartmentController {
 		Department department = departmentRepository.findById(id).get();
 		model.addAttribute("department", department);
 		return "department-edit";
+	}
+	
+	@PutMapping("/{id}")
+	public String update(@PathVariable("id") Long id, Department department) {
+		department.setId(id);
+		departmentRepository.save(department);
+		return "redirect:/department/";
 	}
 	
 	@GetMapping("/delete/{id}")
