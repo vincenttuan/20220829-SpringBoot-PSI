@@ -4,6 +4,10 @@ server:
     context-path: /psi
 
 spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
   thymeleaf:
     cache: false
     mode: HTML
