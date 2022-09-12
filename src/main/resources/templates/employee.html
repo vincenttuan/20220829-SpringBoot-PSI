@@ -14,6 +14,12 @@
 		<h1>新增員工</h1>
 		<form action="#" th:action="@{/employee/}" th:object="${employee}" method="post">
 			<div class="form-group">
+				<label>部門名稱:</label>
+				<select class="form-control select2" th:field="*{department.id}" id="department.id">
+					<option th:each="d:${departments}" th:value="${d.id}" th:text="${d.name}"></option>
+				</select>
+			</div>
+			<div class="form-group">
 				<label>員工名稱:</label>
 				<input type="text" th:field="*{name}" id="name" class="form-control" placeholder="請輸入員工名稱">
 			</div>
