@@ -36,8 +36,8 @@
 					<td th:text="${dept.id}"></td>
 					<td th:text="${dept.name}"></td>
 					<td th:text="${dept.employees}"></td>
-					<td><a href="" class="btn btn-primary">編輯</a></td>
-					<td><a href="" class="btn btn-danger">刪除</a></td>
+					<td><a th:href="@{/department/edit/{id}(id=${dept.id})}" class="btn btn-primary">編輯</a></td>
+					<td><a th:href="@{/department/delete/{id}(id=${dept.id})}" class="btn btn-danger">刪除</a></td>
 				</tr>
 			</tbody>
 		</table>
