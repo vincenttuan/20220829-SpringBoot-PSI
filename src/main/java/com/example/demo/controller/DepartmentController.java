@@ -32,14 +32,14 @@ public class DepartmentController {
 		return "redirect:/department/";
 	}
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("/edit/{id}") // 修改頁面的呈現
 	public String edit(@PathVariable("id") Long id, Model model) {
 		Department department = departmentRepository.findById(id).get();
 		model.addAttribute("department", department);
 		return "department-edit";
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/{id}") // 對資料庫進行修改
 	public String update(@PathVariable("id") Long id, Department department) {
 		department.setId(id);
 		departmentRepository.save(department);
