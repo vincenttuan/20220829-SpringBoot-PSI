@@ -21,7 +21,26 @@
 		</form>
 		<p />
 		<h1>全部部門列表</h1>
-		
+		<table border="1" class="table table-striped table-reposive-md">
+			<thead>
+				<tr>
+					<th>序號</th>
+					<th>部門名稱</th>
+					<th>員工</th>
+					<th>編輯</th>
+					<th>刪除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dept : ${departments}">
+					<td th:text="${dept.id}"></td>
+					<td th:text="${dept.name}"></td>
+					<td th:text="${dept.employees}"></td>
+					<td><a href="" class="btn btn-primary">編輯</a></td>
+					<td><a href="" class="btn btn-danger">刪除</a></td>
+				</tr>
+			</tbody>
+		</table>
 		<!-- Footer -->
 		<div th:include="footer :: footer"></div>
 	</div>
