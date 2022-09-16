@@ -58,7 +58,7 @@ public class LineNotifyService {
 	     // 3. Line Notify 的發送位置
 	     String lineNotifyUrl = "https://notify-api.line.me/api/notify";
 	     // 4. 上傳檔案
-	     File file = new File("src/main/java/com/F18.jpg");
+	     File file = new File("c:/" + filename);
 	     // 5. 發送前設定 -------------------------------------------------------------------------
 	     // 標頭檔
 	     Map<String, String> headers = new HashMap<>();
