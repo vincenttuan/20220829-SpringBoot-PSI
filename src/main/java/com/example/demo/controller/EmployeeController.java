@@ -43,6 +43,7 @@ public class EmployeeController {
 	public String edit(@PathVariable("id") Long id, Model model) {
 		Employee employee = employeeRepository.findById(id).get();
 		model.addAttribute("employee", employee);
+		model.addAttribute("departments", departmentRepository.findAll());
 		return "employee-edit";
 	}
 	
