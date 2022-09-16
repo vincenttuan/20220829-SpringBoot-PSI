@@ -41,7 +41,11 @@
 				<tr th:each="emp : ${employees}">
 					<td th:text="${emp.id}"></td>
 					<td th:text="${emp.name}"></td>
-					<td th:text="${emp.department.name}"></td>
+					<td>
+						<a th:href="@{/department/edit/{id}(id=${emp.department.id})}">
+							<span th:text="${emp.department.name}" class="btn btn-success"></span>
+						</a>
+					</td>
 					<td><a th:href="@{/employee/edit/{id}(id=${emp.id})}" class="btn btn-primary">編輯</a></td>
 					<td><a th:href="@{/employee/delete/{id}(id=${emp.id})}" class="btn btn-danger">刪除</a></td>
 				</tr>
