@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -46,4 +49,27 @@ public class LineNotifyService {
             System.out.println(statusCode);
         }
     }
+	
+	public void send(Product product, String filename) throws Exception {
+	     // 1. 要發送的資料
+		 String message = String.format("商品名稱: %s\n商品特價: %d", product.getName(), product.getPrice());
+         // 2. 存取權杖(也稱為:授權 Token)
+	     String token = "存取權杖";
+	     // 3. Line Notify 的發送位置
+	     String lineNotifyUrl = "https://notify-api.line.me/api/notify";
+	     // 4. 上傳檔案
+	     File file = new File("src/main/java/com/F18.jpg");
+	     // 5. 發送前設定 -------------------------------------------------------------------------
+	     // 標頭檔
+	     Map<String, String> headers = new HashMap<>();
+	     headers.put("Authorization", "Bearer " + token);
+	     HttpPostMultipart multipart = new HttpPostMultipart(lineNotifyUrl, "utf-8", headers);
+	     // post參數
+	     multipart.addFormField("message", message);
+	     // 上傳文件
+	     multipart.addFilePart("imageFile", file);
+	     // 返回信息
+	     String response = multipart.finish();
+	     System.out.println(response);
+	 } 
 }
