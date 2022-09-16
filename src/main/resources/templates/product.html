@@ -55,7 +55,8 @@
 					</td>
 					<td><a th:href="@{/product/edit/{id}(id=${prod.id})}" class="btn btn-primary">編輯</a></td>
 					<td><a th:href="@{/product/delete/{id}(id=${prod.id})}" class="btn btn-danger">刪除</a></td>
-					<td class="btn btn-success">發送廣告</td>
+					<td><a th:href="@{/product/linenotify/{id}(id=${prod.id})}" class="btn btn-success">發送廣告</a></td>
+					
 				</tr>
 			</tbody>
 		</table>
