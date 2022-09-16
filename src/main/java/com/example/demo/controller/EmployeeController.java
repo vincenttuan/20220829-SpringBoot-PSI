@@ -39,6 +39,13 @@ public class EmployeeController {
 		return "redirect:/employee/";
 	}
 	
+	@PutMapping("/{id}")
+	public String update(@PathVariable("id") Long id, Employee employee) {
+		employee.setId(id);
+		employeeRepository.save(employee);
+		return "redirect:/employee/";
+	}
+	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		employeeRepository.deleteById(id);
