@@ -57,7 +57,7 @@
 					<td th:text="${pur.date}"></td>
 					<td th:text="${pur.supplier.name}"></td>
 					<td th:text="${pur.employee.name}"></td>
-					<td></td>
+					<td th:text="${pur.total}"></td>
 					<td><a th:href="@{/purchase/edit/{id}(id=${pur.id})}" class="btn btn-primary">編輯</a></td>
 					<td><a th:href="@{/purchase/{id}/item(id=${pur.id})}" class="btn btn-success">檢視</a></td>
 					<td><a th:href="@{/purchase/delete/{id}(id=${pur.id})}" class="btn btn-danger">刪除</a></td>
