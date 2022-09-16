@@ -55,7 +55,7 @@ public class ProductController {
 	@GetMapping("/linenotify/{id}")
 	public String lineNotify(@PathVariable("id") Long id) {
 		Product product = productRepository.findById(id).get();
-		
+		// 傳送
 		return "redirect:/product/";
 	}
 	

@@ -4,8 +4,11 @@ import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demo.entity.Product;
 
+@Service
 public class LineNotifyService {
 	
 	public void send(Product product) throws Exception {
