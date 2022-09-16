@@ -47,7 +47,11 @@
 					<td th:text="${prod.name}"></td>
 					<td th:text="${prod.cost}"></td>
 					<td th:text="${prod.price}"></td>
-					<td>...</td>
+					<td>
+						<span th:each="item : ${prod.purchaseItems}">
+							<span th:text="${item.purchase.supplier.name}"></span>
+						</span>
+					</td>
 					<td><a th:href="@{/product/edit/{id}(id=${prod.id})}" class="btn btn-primary">編輯</a></td>
 					<td><a th:href="@{/product/delete/{id}(id=${prod.id})}" class="btn btn-danger">刪除</a></td>
 				</tr>
