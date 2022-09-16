@@ -51,4 +51,12 @@ public class ProductController {
 		productRepository.deleteById(id);
 		return "redirect:/product/";
 	}
+	
+	@GetMapping("/linenotify/{id}")
+	public String lineNotify(@PathVariable("id") Long id) {
+		Product product = productRepository.findById(id).get();
+		
+		return "redirect:/product/";
+	}
+	
 }
