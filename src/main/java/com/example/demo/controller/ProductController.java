@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Product;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.service.LineNotifyService;
 
 @Controller
 @RequestMapping("/product")
@@ -18,6 +19,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private LineNotifyService lineNotifyService;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -55,7 +59,12 @@ public class ProductController {
 	@GetMapping("/linenotify/{id}")
 	public String lineNotify(@PathVariable("id") Long id) {
 		Product product = productRepository.findById(id).get();
-		// 傳送
+		// 傳送 Line
+		try {
+			lineNotifyService.send(product);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "redirect:/product/";
 	}
 	
