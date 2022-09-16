@@ -61,7 +61,8 @@ public class ProductController {
 		Product product = productRepository.findById(id).get();
 		// 傳送 Line
 		try {
-			lineNotifyService.send(product);
+			//lineNotifyService.send(product);
+			lineNotifyService.send(product, "rose.jpg");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

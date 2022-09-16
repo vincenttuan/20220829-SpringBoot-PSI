@@ -14,11 +14,13 @@ import com.example.demo.entity.Product;
 @Service
 public class LineNotifyService {
 	
+	String token = "";
+	
 	public void send(Product product) throws Exception {
         // 1. 要發送的資料
         String message = String.format("商品名稱: %s\n商品特價: %d", product.getName(), product.getPrice());
         // 2. 存取權杖(也稱為:授權 Token)
-        String token = "存取權杖";
+        
         // 3. Line Notify 的發送位置
         String lineNotifyUrl = "https://notify-api.line.me/api/notify";
         // 4. 發送前設定 -------------------------------------------------------------------------
@@ -54,7 +56,7 @@ public class LineNotifyService {
 	     // 1. 要發送的資料
 		 String message = String.format("商品名稱: %s\n商品特價: %d", product.getName(), product.getPrice());
          // 2. 存取權杖(也稱為:授權 Token)
-	     String token = "存取權杖";
+	     
 	     // 3. Line Notify 的發送位置
 	     String lineNotifyUrl = "https://notify-api.line.me/api/notify";
 	     // 4. 上傳檔案
