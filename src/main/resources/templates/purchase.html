@@ -28,7 +28,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label>部門名稱:</label>
+				<label>員工姓名:</label>
 				<select class="form-control select2" th:field="*{employee.id}" id="employee.id">
 					<option th:each="emp:${employees}" th:value="${emp.id}" th:text="${emp.name}"></option>
 				</select>
