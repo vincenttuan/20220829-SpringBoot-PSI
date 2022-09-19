@@ -96,7 +96,7 @@ public class PurchaseController {
 		return "purchase-item";
 	}
 	
-	@PostMapping("/purchase/{pid}/item")
+	@PostMapping("/{pid}/item")
 	// 新增訂單項目
 	public String createItem(PurchaseItem purchaseItem, @PathVariable("pid") Long pid) {
 		// 訂單檔(主檔)
