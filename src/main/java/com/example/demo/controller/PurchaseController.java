@@ -107,6 +107,27 @@ public class PurchaseController {
 		return "redirect:/purchase/" + pid + "/item";
 	}
 	
+	@GetMapping("/edit/{pid}/item/{iid}") // 項目修改頁面的呈現
+	public String editItem(@PathVariable("pid") Long pid, @PathVariable("iid") Long iid, Model model) {
+		Purchase purchase = purchaseRepository.findById(pid).get();
+		PurchaseItem purchaseItem = purchaseItemRepository.findById(iid).get();
+		List<Product> products = productRepository.findAll();
+		model.addAttribute("purchase", purchase);
+		model.addAttribute("purchaseItem", purchaseItem);
+		model.addAttribute("products", products);
+		return "purchase-item";
+	}
+	
+	@PutMapping("/{pid}/item")
+	// 修改訂單項目
+	public String updateItem(PurchaseItem purchaseItem, @PathVariable("pid") Long pid) {
+		// 訂單檔(主檔)
+		Purchase purchase = purchaseRepository.findById(pid).get();
+		// 訂單項目與訂單檔(主檔)建立關聯 (ps:由多的一方建立關聯)
+		purchaseItem.setPurchase(purchase);
+		purchaseItemRepository.save(purchaseItem);
+		return "redirect:/purchase/" + pid + "/item";
+	}
 	
 	@GetMapping("/delete/{pid}/item/{iid}")
 	// 刪除採購明細檔
