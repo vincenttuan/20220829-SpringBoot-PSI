@@ -59,7 +59,7 @@
 			</tr>
 		</table>
 		
-		<h1>新增採購明細單</h1>
+		<h1 th:text="(*{id} == null ? '新增採購單項目' : '修改採購單項目')" >新增採購明細單</h1>
 		<form action="#" th:action="@{/purchase/{pid}/item(pid=${purchase.id})}" th:object="${purchaseItem}" method="post">
 			<input type="hidden" name="_method" th:value="(*{id} == null ? 'POST' : 'PUT')" value="POST" />
 			<div class="form-group">
