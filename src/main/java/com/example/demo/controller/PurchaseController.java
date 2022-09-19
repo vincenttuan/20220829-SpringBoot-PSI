@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Employee;
@@ -47,4 +50,31 @@ public class PurchaseController {
 		model.addAttribute("employees", employees);
 		return "purchase";
 	}
+	
+	@PostMapping("/")
+	public String create(Purchase purchase) {
+		purchaseRepository.save(purchase);
+		return "redirect:/purchase/";
+	}
+	
+	@GetMapping("/edit/{id}") // 修改頁面的呈現
+	public String edit(@PathVariable("id") Long id, Model model) {
+		Purchase purchase = purchaseRepository.findById(id).get();
+		model.addAttribute("purchase", purchase);
+		return "purchase-edit";
+	}
+	
+	@PutMapping("/{id}") // 對資料庫進行修改
+	public String update(@PathVariable("id") Long id, Purchase purchase) {
+		purchase.setId(id);
+		purchaseRepository.save(purchase);
+		return "redirect:/purchase/";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		purchaseRepository.deleteById(id);
+		return "redirect:/purchase/";
+	}
+
 }
