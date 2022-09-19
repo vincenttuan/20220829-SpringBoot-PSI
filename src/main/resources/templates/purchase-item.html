@@ -60,6 +60,7 @@
 		</table>
 		
 		<form action="#" th:action="@{/purchase/{pid}/item(pid=${purchase.id})}" th:object="${purchaseItem}" method="post">
+			<!-- h1 標籤要放到 form 表單中, 才可以抓到 *{id} -->
 			<h1 th:text="(*{id} == null ? '新增採購單項目' : '修改採購單項目')" >新增採購明細單</h1>
 			<input type="hidden" name="_method" th:value="(*{id} == null ? 'POST' : 'PUT')" value="POST" />
 			<div class="form-group">
