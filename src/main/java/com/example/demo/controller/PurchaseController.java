@@ -108,4 +108,11 @@ public class PurchaseController {
 	}
 	
 	
+	@GetMapping("/delete/{pid}/item/{iid}")
+	// 刪除採購明細檔
+	public String deleteItem(@PathVariable("pid") Long pid, @PathVariable("iid") Long iid) {
+		purchaseItemRepository.deleteById(iid);
+		return "redirect:/purchase/" + pid + "/item";
+	} 
+	
 }
