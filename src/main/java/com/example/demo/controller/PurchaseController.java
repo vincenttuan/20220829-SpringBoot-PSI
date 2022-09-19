@@ -60,7 +60,13 @@ public class PurchaseController {
 	@GetMapping("/edit/{id}") // 修改頁面的呈現
 	public String edit(@PathVariable("id") Long id, Model model) {
 		Purchase purchase = purchaseRepository.findById(id).get();
+		List<Purchase> purchases = purchaseRepository.findAll();
+		List<Supplier> suppliers = supplierRepository.findAll();
+		List<Employee> employees = employeeRepository.findAll();
 		model.addAttribute("purchase", purchase);
+		model.addAttribute("purchases", purchases);
+		model.addAttribute("suppliers", suppliers);
+		model.addAttribute("employees", employees);
 		return "purchase-edit";
 	}
 	
