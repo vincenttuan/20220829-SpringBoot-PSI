@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Employee;
+import com.example.demo.entity.Product;
 import com.example.demo.entity.Purchase;
+import com.example.demo.entity.PurchaseItem;
 import com.example.demo.entity.Supplier;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.ProductRepository;
@@ -80,5 +82,19 @@ public class PurchaseController {
 		purchaseRepository.deleteById(id);
 		return "redirect:/purchase/";
 	}
-
+	
+	// 檢視採購單明細
+	// pid -> 採購單主檔 id
+	@GetMapping("/{pid}/item")
+	public String itemIndex(Model model, @PathVariable("pid") Long pid) {
+		Purchase purchase = purchaseRepository.findById(pid).get();
+		PurchaseItem purchaseItem = new PurchaseItem();
+		List<Product> products = productRepository.findAll();
+		model.addAttribute("purchase", purchase);
+		model.addAttribute("purchaseItem", purchaseItem);
+		model.addAttribute("products", products);
+		return "purchase-item";
+	}
+	
+	
 }
