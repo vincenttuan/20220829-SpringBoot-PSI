@@ -86,7 +86,7 @@ public class PurchaseController {
 	// 檢視採購單明細
 	// pid -> 採購單主檔 id
 	@GetMapping("/{pid}/item")
-	public String itemIndex(Model model, @PathVariable("pid") Long pid) {
+	public String indexItem(Model model, @PathVariable("pid") Long pid) {
 		Purchase purchase = purchaseRepository.findById(pid).get();
 		PurchaseItem purchaseItem = new PurchaseItem();
 		List<Product> products = productRepository.findAll();
@@ -94,6 +94,17 @@ public class PurchaseController {
 		model.addAttribute("purchaseItem", purchaseItem);
 		model.addAttribute("products", products);
 		return "purchase-item";
+	}
+	
+	@PostMapping("/purchase/{pid}/item")
+	// 新增訂單項目
+	public String createItem(PurchaseItem purchaseItem, @PathVariable("pid") Long pid) {
+		// 訂單檔(主檔)
+		Purchase purchase = purchaseRepository.findById(pid).get();
+		// 訂單項目與訂單檔(主檔)建立關聯 (ps:由多的一方建立關聯)
+		purchaseItem.setPurchase(purchase);
+		purchaseItemRepository.save(purchaseItem);
+		return "redirect:/purchase/" + pid + "/item";
 	}
 	
 	
