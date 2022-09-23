@@ -24,7 +24,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+				<tr th:each="inv : ${inventories}">
+					<td th:text="${inv.id}"></td>
+					<td th:text="${inv.name}"></td>
+					<td th:text="${inv.cost}"></td>
+					<td th:text="${inv.price}"></td>
+					<td th:text="${inv.amount1}"></td>
+					<td th:text="${inv.amount2}"></td>
+				</tr>
 			</tbody>
 		</table>
 		<!-- Footer -->
