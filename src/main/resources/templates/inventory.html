@@ -29,8 +29,8 @@
 					<td th:text="${inv.name}"></td>
 					<td th:text="${inv.cost}"></td>
 					<td th:text="${inv.price}"></td>
-					<td th:text="${inv.amount1}"></td>
-					<td th:text="${inv.amount2}"></td>
+					<td th:text="${inv.amount1 ne null} ? ${inv.amount1} : '0'"></td>
+					<td th:text="${inv.amount2 ne null} ? ${inv.amount2} : '0'"></td>
 				</tr>
 			</tbody>
 		</table>
