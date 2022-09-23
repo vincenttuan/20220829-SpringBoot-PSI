@@ -25,7 +25,12 @@ public class InventoryValidator implements Validator {
 		
 		if(orderItem.getAmount() == null || orderItem.getAmount() == 0) {
 			errors.rejectValue("amount", "order_item.amount.required", "請輸入數量");
+		} else {
+			// 此商品的庫存數量是否足夠下單 ?
+			Long id = orderItem.getProduct().getId();
+			
 		}
+		
 		
 	}
 	
