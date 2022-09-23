@@ -25,8 +25,8 @@ public class ChartController {
 		// 組合 google chart 要的資料格式
 		String chartValues = "";
 		for(ProductSales ps : productSales) {
-			//chartValues += "[\'" + ps.getName() + "\'," + ps.getTotal() + "],";
-			chartValues += "[" + ps.getId() + "," + ps.getTotal() + "],";
+			chartValues += "[\'" + ps.getName() + "\'," + ps.getTotal() + "],";
+			//chartValues += "[" + ps.getId() + "," + ps.getTotal() + "],";
 		}
 		model.addAttribute("chartValues", chartValues);
 		return "chart"; 

@@ -7,7 +7,7 @@
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 		
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript"> 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -15,7 +15,11 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Product', 'Total'],
-          [[${chartValues}]]
+          /*[# th:each="row : ${productSales}"]*/
+        
+        	['[[${row.name}]]', [[${row.total}]]],
+        
+          /*[/]*/
         ]);
 
         var options = {
