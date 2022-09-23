@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/inventory")
 public class InventoryController {
 	
+	@RequestMapping("/")
 	public String index(Model model) {
 		return "inventory";
 	}
