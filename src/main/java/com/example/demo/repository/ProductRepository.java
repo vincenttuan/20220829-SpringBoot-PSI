@@ -24,4 +24,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 			+ "from product p where p.id=:id ")
 	Inventory findInventoryById(Long id);
 	
+	
+	
 }
