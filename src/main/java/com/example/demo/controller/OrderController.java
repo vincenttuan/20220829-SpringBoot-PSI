@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.example.demo.entity.OrderItem;
 import com.example.demo.entity.Customer;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.validator.InventoryValidator;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.OrderItemRepository;
 import com.example.demo.repository.CustomerRepository;
@@ -39,6 +41,9 @@ public class OrderController {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private InventoryValidator inventoryValidator;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -98,7 +103,17 @@ public class OrderController {
 	
 	@PostMapping("/{oid}/item")
 	// 新增訂單項目
-	public String createItem(OrderItem orderItem, @PathVariable("oid") Long oid) {
+	public String createItem(OrderItem orderItem, BindingResult result, Model model, @PathVariable("oid") Long oid) {
+		// 驗證資料
+		inventoryValidator.validate(orderItem, result);
+		if(result.hasErrors()) {
+			Order order = orderRepository.findById(oid).get();
+			List<Product> products = productRepository.findAll();
+			model.addAttribute("order", order);
+			model.addAttribute("orderItem", orderItem);
+			model.addAttribute("products", products);
+			return "order-item";
+		}
 		// 訂單檔(主檔)
 		Order order = orderRepository.findById(oid).get();
 		// 訂單項目與訂單檔(主檔)建立關聯 (ps:由多的一方建立關聯)
