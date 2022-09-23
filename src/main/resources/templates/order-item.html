@@ -82,6 +82,10 @@
 				<input th:field="*{amount}" id="amount" class="form-control" />
 			</div>
 			
+			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+				<p th:each="err : ${#fields.errors('*')}" th:text="${err}" ></p>
+			</div>
+			
 			<input type="submit" th:value="(*{id} == null ? '新增訂單明細' : '修改訂單明細')"  value="新增訂單明細" class="btn btn-primary" />
 		</form>
 		<p />
