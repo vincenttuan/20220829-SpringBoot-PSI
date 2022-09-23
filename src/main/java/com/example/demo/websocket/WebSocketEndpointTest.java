@@ -18,8 +18,7 @@ import com.example.demo.service.LineNotifyService;
 @ServerEndpoint("/websocket")
 public class WebSocketEndpointTest {
 	
-	@Autowired
-	private LineNotifyService lineNotifyService;
+	private LineNotifyService lineNotifyService = new LineNotifyService();
 	
     // 用來存放WebSocket已連接的Socket
     static CopyOnWriteArraySet<Session> sessions;
