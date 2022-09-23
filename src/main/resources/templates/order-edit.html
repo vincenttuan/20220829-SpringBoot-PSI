@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>PSI 訂單資料表</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container my-2">
+		<!-- Header -->
+		<div th:include="header :: header"></div>
+		<!-- Content -->
+		<h1>修改訂單</h1>
+		<form action="#" th:action="@{/order/{id}(id=${order.id})}" th:object="${order}" method="post">
+			<input type="hidden" name="_method" value="PUT" />
+			<div class="form-group">
+				<label>訂單日期:</label>
+				<input type="date" 
+					   th:field="*{date}"  
+					   id="date" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label>客戶名稱:</label>
+				<select class="form-control select2" th:field="*{customer.id}" id="customer.id">
+					<option th:each="cust:${customers}" th:value="${cust.id}" th:text="${cust.name}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label>員工姓名:</label>
+				<select class="form-control select2" th:field="*{employee.id}" id="employee.id">
+					<option th:each="emp:${employees}" th:value="${emp.id}" th:text="${emp.name}"></option>
+				</select>
+			</div>
+			
+			<input type="submit" value="修改訂單" class="btn btn-primary" />
+		</form>
+		<p />
+		<!-- Footer -->
+		<div th:include="footer :: footer"></div>
+	</div>
+</body>
+</html>

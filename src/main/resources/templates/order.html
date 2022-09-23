@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>PSI 訂單資料表</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container my-2">
+		<!-- Header -->
+		<div th:include="header :: header"></div>
+		<!-- Content -->
+		<h1>新增訂單</h1>
+		<form action="#" th:action="@{/order/}" th:object="${order}" method="post">
+			<div class="form-group">
+				<label>訂單日期:</label>
+				<input type="date" 
+					   th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"  
+					   name="date" id="date" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label>客戶名稱:</label>
+				<select class="form-control select2" th:field="*{customer.id}" id="customer.id">
+					<option th:each="cust:${customers}" th:value="${cust.id}" th:text="${cust.name}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label>員工姓名:</label>
+				<select class="form-control select2" th:field="*{employee.id}" id="employee.id">
+					<option th:each="emp:${employees}" th:value="${emp.id}" th:text="${emp.name}"></option>
+				</select>
+			</div>
+			
+			<input type="submit" value="新增訂單" class="btn btn-primary" />
+		</form>
+		<p />
+		<h1>全部訂單列表</h1>
+		<table border="1" class="table table-striped table-reposive-md">
+			<thead>
+				<tr>
+					<th>序號</th>
+					<th>日期</th>
+					<th>客戶</th>
+					<th>經手人</th>
+					<th>總價</th>
+					<th>編輯</th>
+					<th>檢視明細</th>
+					<th>刪除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ord : ${orders}">
+					<td th:text="${ord.id}"></td>
+					<td th:text="${ord.date}"></td>
+					<td th:text="${ord.customer.name}"></td>
+					<td th:text="${ord.employee.name}"></td>
+					<td th:text="${ord.total}"></td>
+					<td><a th:href="@{/order/edit/{id}(id=${ord.id})}" class="btn btn-primary">編輯</a></td>
+					<td><a th:href="@{/order/{id}/item(id=${ord.id})}" class="btn btn-success">檢視</a></td>
+					<td><a th:href="@{/order/delete/{id}(id=${ord.id})}" class="btn btn-danger">刪除</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- Footer -->
+		<div th:include="footer :: footer"></div>
+	</div>
+</body>
+</html>

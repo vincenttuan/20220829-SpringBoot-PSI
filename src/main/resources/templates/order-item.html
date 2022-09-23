@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>PSI 訂單明細資料表</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container my-2">
+		<!-- Header -->
+		<div th:include="header :: header"></div>
+		<!-- Content -->
+		<h1>訂單主檔資料(Master)</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<tr>
+				<th>訂單序號</th>
+				<th>訂單日期</th>
+				<th>客戶名稱</th>
+				<th>經手員工</th>
+				<th>項目筆數</th>
+				<th>訂單總價</th>
+			</tr>
+			<tr>
+				<td th:text="${order.id}"></td>
+				<td th:text="${order.date}"></td>
+				<td th:text="${order.customer.name}"></td>
+				<td th:text="${order.employee.name}"></td>
+				<td th:text="${#lists.size(order.orderItems)}"></td>
+				<td th:text="${order.total}"></td>
+			</tr>
+		</table>
+		
+		<h1>訂單明細列表(Detail)</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<tr>
+				<th>明細序號</th>
+				<th>商品名稱</th>
+				<th>商品價格</th>
+				<th>商品數量</th>
+				<th>小計</th>
+				<th>編輯</th>
+				<th>刪除</th>
+			</tr>
+			<tr th:each="item : ${order.orderItems}">
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.product.name}"></td>
+				<td th:text="${item.product.price}"></td>
+				<td th:text="${item.amount}"></td>
+				<td th:text="${item.amount * item.product.price}"></td>
+				<td><a th:href="@{/order/edit/{oid}/item/{iid}(oid=${order.id}, iid=${item.id})}" class="btn btn-primary">編輯</a></td>
+				<td><a th:href="@{/order/delete/{oid}/item/{iid}(oid=${order.id}, iid=${item.id})}" class="btn btn-danger">刪除</a></td>
+			</tr>
+			<tr>
+				<td colspan="3"> </td>
+				<td>總計</td>
+				<td th:text="${order.total}"></td>
+				<td> </td>
+			</tr>
+		</table>
+		
+		<form action="#" th:action="@{/order/{oid}/item(oid=${order.id})}" th:object="${orderItem}" method="post">
+			<!-- h1 標籤要放到 form 表單中, 才可以抓到 *{id} -->
+			<h1 th:text="(*{id} == null ? '新增訂單明細' : '修改訂單明細')" >新增訂單明細</h1>
+			<input type="hidden" name="_method" th:value="(*{id} == null ? 'POST' : 'PUT')" value="POST" />
+			<div class="form-group">
+				<label>項目序號:</label>
+				<input type="text" 
+					   th:field="*{id}"  
+					   id="id" class="form-control" readonly="readonly">
+			</div>
+			
+			<div class="form-group">
+				<label>商品名稱:</label>
+				<select class="form-control select2" th:field="*{product.id}" id="product.id">
+					<option th:each="prod:${products}" th:value="${prod.id}" th:text="${prod.name}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label>購買數量:</label>
+				<input th:field="*{amount}" id="amount" class="form-control" />
+			</div>
+			
+			<input type="submit" th:value="(*{id} == null ? '新增訂單明細' : '修改訂單明細')"  value="新增訂單明細" class="btn btn-primary" />
+		</form>
+		<p />
+		
+		<!-- Footer -->
+		<div th:include="footer :: footer"></div>
+	</div>
+</body>
+</html>
