@@ -9,17 +9,25 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.example.demo.service.LineNotifyService;
 
 @Component
 @ServerEndpoint("/websocket")
 public class WebSocketEndpointTest {
+	
+	@Autowired
+	private LineNotifyService lineNotifyService;
+	
     // 用來存放WebSocket已連接的Socket
     static CopyOnWriteArraySet<Session> sessions;
     @OnMessage
     public void onMessage(String message, Session session) throws IOException,
             InterruptedException, EncodeException {
         System.out.println("message = " + message);
+        
         for (Session s : sessions) {    //對每個連接的Client傳送訊息
             if (s.isOpen()) {
                 
