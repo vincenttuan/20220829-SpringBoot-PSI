@@ -21,6 +21,7 @@
 					<th>商品售價</th>
 					<th>採購數量</th>
 					<th>銷售數量</th>
+					<th>庫存數量</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,6 +32,7 @@
 					<td th:text="${inv.price}"></td>
 					<td th:text="${inv.amount1 ne null} ? ${inv.amount1} : '0'"></td>
 					<td th:text="${inv.amount2 ne null} ? ${inv.amount2} : '0'"></td>
+					<td th:text="${inv.amount1?:0} - ${inv.amount2?:0}"></td>
 				</tr>
 			</tbody>
 		</table>
