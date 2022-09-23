@@ -22,13 +22,6 @@ public class ChartController {
 	public String index(Model model) {
 		List<ProductSales> productSales = productRepository.queryProductSales();
 		model.addAttribute("productSales", productSales);
-		// 組合 google chart 要的資料格式
-		String chartValues = "";
-		for(ProductSales ps : productSales) {
-			chartValues += "[\'" + ps.getName() + "\'," + ps.getTotal() + "],";
-			//chartValues += "[" + ps.getId() + "," + ps.getTotal() + "],";
-		}
-		model.addAttribute("chartValues", chartValues);
 		return "chart"; 
 	}
 	
