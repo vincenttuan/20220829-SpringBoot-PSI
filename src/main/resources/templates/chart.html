@@ -14,19 +14,15 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Product', 'Total'],
+          [[${chartValues}]]
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Product Sales'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
       }
@@ -38,8 +34,7 @@
 		<div th:include="header :: header"></div>
 		<!-- Content -->
 		<h1>Chart 銷售統計圖表</h1>
-		<div th:text="${productSales}">
-        </div>
+		<th:block th:text="${chartValues}" />
 		<div id="piechart" style="width: 900px; height: 500px;"></div>        
 		<!-- Footer -->
 		<div th:include="footer :: footer"></div>
