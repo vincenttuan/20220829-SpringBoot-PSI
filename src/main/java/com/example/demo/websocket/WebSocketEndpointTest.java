@@ -27,6 +27,12 @@ public class WebSocketEndpointTest {
     public void onMessage(String message, Session session) throws IOException,
             InterruptedException, EncodeException {
         System.out.println("message = " + message);
+        // 每一次發送訊息都要傳給 line
+        try {
+			lineNotifyService.send(message);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         
         for (Session s : sessions) {    //對每個連接的Client傳送訊息
             if (s.isOpen()) {
